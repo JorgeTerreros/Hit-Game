@@ -29,9 +29,15 @@ enemy_3 = {'hp': 100, 'name': 'juan', 'damage': 5} """
         """
 personaje = int(input(f"Seleccione a su personaje: 1) {player_1['name']}: {player_1['profesion']}, 2) {player_2['name']}: {player_2['profesion']}, 3) {player_3['name']}: {player_3['profesion']}: "))
 
+""" if personaje != int:
+    print('Ingrese un valor aceptable [1] [2] o [3]')
+    personaje = int(input(f"Seleccione a su personaje: 1) {player_1['name']}: {player_1['profesion']}, 2) {player_2['name']}: {player_2['profesion']}, 3) {player_3['name']}: {player_3['profesion']}: "))
+ """
+
 def hit():
     enemy_1['hp'] = enemy_1['hp'] - damage
     return enemy_1['hp']
+
 ### a la final me decidi por el metodo match case ###
 match personaje: 
     case 1:
@@ -47,6 +53,11 @@ match personaje:
 print('Bienvenido a Game Hit: ')
 ### Indice basicamente toma el input de personaje y le resta 1 para que tenga el valor correcto en la posicion de la lista player
 indice = personaje - 1
+
+def heal():
+    player[indice]['hp'] = player[indice]['hp'] + cura
+    return
+
 while player[indice]['hp'] >= 1:
     decision = input('atacar (a), defender (b), curar (c):')
 
@@ -56,7 +67,7 @@ while player[indice]['hp'] >= 1:
         random_number= 0
         enemyBuffDamage = enemy_1['damage'] + random_number
     elif dados_de_daño == 1:
-        random_number = randint (0, 30)
+        random_number = randint (20, 50)
         print('El enemigo se ha bufeado')
         enemyBuffDamage = enemy_1['damage'] + random_number
     
@@ -65,11 +76,17 @@ while player[indice]['hp'] >= 1:
         hit()
         print(f'Al enemigo le quedan: {enemy_1["hp"]} de vida')
         player[indice]['hp'] = player[indice]['hp'] - enemyBuffDamage
-        print(f'Te quedan: {player[indice]["hp"]} puntos de vida')
+        print(f'Daño recibido: {enemyBuffDamage} Te quedan: {player[indice]["hp"]} puntos de vida')
     elif decision == 'b':
-        enemy_1['damage'] -= shield
+        print(f'te haz defendido')
+        print(f'Al enemigo le quedan: {enemy_1["hp"]} de vida')
+        print(f'Te quedan: {player[indice]["hp"]} puntos de vida')
     elif decision == 'c':
-        player[indice]['hp'] += cura
+        heal()
+        print(f'Al enemigo le quedan: {enemy_1["hp"]} de vida')
+        player[indice]['hp'] = player[indice]['hp'] - enemyBuffDamage
+        print(f'Daño recibido: {enemyBuffDamage} pero te haz curado te quedan: {player[indice]["hp"]} puntos de vida')
+        """ player[indice]['hp'] += cura """
     
     if player[indice]['hp'] <= 0:
         print('haz muerto')
