@@ -9,13 +9,37 @@ class Player:
         self.profesion = profesion
         self.hp = hp
         self.damage = damage
-player_1 = Player("Duncan", "attacker", 150, 20)
+player_1 = Player("Duncan", "attacker", 150, 20) ##tuplas
 player_2 = Player("Robert", "tank", 200, 10)
 player_3 = Player("Zet", "magician", 100, 30)
 playerList = []
-playerList.append(player_1)
+playerList.append(player_1) ##metodo para meter un valor a una lista
 playerList.append(player_2)
 playerList.append(player_3)
+
+""" hacer un inventario para los personajes cambiar armas o guardar armas que ganen en el camino
+Me recomiendan usar un array/diccionario/lista simple
+Mi pensar es con una pila o listas y colas para poder tener un limite de inventario y en caso de querer cambiar arma sacar la anterior del inventario"""
+
+class Inventario:
+    def __init__(self, nombre_item, dmg_weapon, def_shield, healing_amount_item):
+        self.nombre_item = nombre_item
+        self.dmg_weapon = dmg_weapon
+        self.def_shield = def_shield
+        self.healing_amount_item = healing_amount_item
+
+Mazo = Inventario("Mazo", 300, 0, 0)
+Espada = Inventario("Espada", 150, 0, 0)
+Daga = Inventario("Daga", 50, 0, 0)
+
+WeaponList = []
+""" hacer una condicion para que el personaje elija un arma dentro del inventario (estoy pensando en que las armas sean dropeadas por los mounstros o un loot random) """
+""" if jugador_eleccion = "Mazo":
+    WeaponList.append(Mazo)
+elif juegador_eleccion = "Espada"
+    WeaponList.append(Espada)
+elif jugador_eleccion = "Daga"
+    WeaponList.append(Daga) """
 
 class Enemy:
     def __init__(self, name, damage, hp):
@@ -28,6 +52,7 @@ enemy_2 = Enemy("DarkClerig", 30, 100)
 enemy_3 = Enemy("OrcWarrior", 10, 200)
 shield = None #none significa que no tiene ningun valor y se puede cambiar a futuro
 cura = 10
+
 
 
 ### Seleccion de personaje ###
