@@ -65,12 +65,13 @@ cura = 10
     elif personaje == "3":
         return f"haz seleccionado {player_3.name} tu daño es de {hit(player_3.damage)}, tu hp es de {player_3.hp}"
         """
-personaje = int(input(f"Seleccione a su personaje: 1) {player_1.name}: {player_1.profesion}, 2) {player_2.name}: {player_2.profesion}, 3) {player_3.name}: {player_3.profesion}: "))
-
-""" if personaje != int:
-    print('Ingrese un valor aceptable [1] [2] o [3]')
-    personaje = int(input(f"Seleccione a su personaje: 1) {player_1.name}: {player_1.profesion}, 2) {player_2.name}: {player_2.profesion}, 3) {player_3.name}: {player_3.profesion}: "))
-"""
+#loop con try except para que se ingrese un valor correcto de entre las opciones
+while True:
+    try:
+        personaje = int(input(f"Seleccione a su personaje: 1) {player_1.name}: {player_1.profesion}, 2) {player_2.name}: {player_2.profesion}, 3) {player_3.name}: {player_3.profesion}: "))
+        break
+    except ValueError:
+        print("Ingrese un valor correcto [1] [2] o [3]")
 
 def hit():
     enemy_1.hp = enemy_1.hp - damage
@@ -97,8 +98,10 @@ def heal():
     return
 
 while playerList[indice].hp >= 1:
-    decision = input('atacar (a), defender (b), curar (c):')
-
+    try:
+        decision = input('atacar (a), defender (b), curar (c):')
+    except ValueError:
+        print("Ingrese una de las opciones en pantalla")
 ## quiero añadir una funcion de bufo random del enemigo que haga al jugador peligrar y decidir si defenderse o curarse
     dados_de_daño = randint(0, 1)
     if dados_de_daño == 0:
